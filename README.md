@@ -9,10 +9,6 @@ First task is to get ssh working. [Dropbear](https://matt.ucc.asn.au/dropbear/dr
 ```
 root@android:/ # mount -o remount,rw /system
 root@android:/ # cp /sdcard/downloads/dropbearmulti /system/bin/
-root@android:/ # ln -s dropbearmulti dropbear
-root@android:/ # ln -s dropbearmulti dropbearkey
-root@android:/ # ln -s dropbearmulti dbclient
-root@android:/ # ln -s dropbearmulti scp
 ```
 
 * Create symlinks to the `dropbearmulti` binary
@@ -46,5 +42,6 @@ root@android:/ # cp -R /.ssh /sdcard/.ssh
 * https://github.com/l3iggs/android_external_sshfs
 
 * https://github.com/lotan/android_sshfs_bin
+
 
 
