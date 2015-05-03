@@ -26,10 +26,29 @@ root@android:/ # ln -s dropbearmulti scp
 root@android:/ # ssh USER@HOST
 ```
 
-* Once connected, exit back to android local backup the `/.ssh` directory because it gets deleted on boot. We want to save the `known_hosts` file so we don't get an unknown host prompt every reboot.
+* Once connected, exit back to android local and backup the `/.ssh` directory because it gets deleted on boot. We want to save the `known_hosts` file so we don't get an unknown host prompt every reboot.
 
 ```
 root@android:/ # cp -R /.ssh /sdcard/.ssh
+```
+
+* Generate public keys so we can login in without a password, this is almost a necessity for auto mounting.
+
+```
+root@android:/ # dropbearkey -t rsa -f /data/.ssh/id_rsa
+``` 
+
+* You can save the public key to a file.
+
+```
+root@android:/ # dropbearkey -y -f /data/.ssh/id_rsa | grep ssh-rsa > /tmp/pubkey
+
+```
+
+Add the key to your `authorized_keys` file on your server.
+
+```
+cat pubkey >> ~/.ssh/authorized_keys
 ```
 
 ---
@@ -43,5 +62,6 @@ root@android:/ # cp -R /.ssh /sdcard/.ssh
 
 * https://github.com/lotan/android_sshfs_bin
 
+* https://yorkspace.wordpress.com/2009/04/08/using-public-keys-with-dropbear-ssh-client/
 
 
