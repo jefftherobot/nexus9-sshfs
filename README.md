@@ -82,7 +82,10 @@ You should have working SSHFS right now! But you may have noticed that the conte
 
 ## Automounting
 
+* Prepare debuggerd method
+
 ```
+# cp /sdcards/downloads/mount_nas.sh /system/bin/
 # cp /system/debuggerd /system/debuggerd.bin
 # touch /system/debuggerd
 ```
@@ -90,8 +93,13 @@ You should have working SSHFS right now! But you may have noticed that the conte
 * Contents of debuggerd
 
 ```
-todo
+#!/system/bin/sh
+/system/bin/mount_nas.sh 
+exec /system/bin/debuggerd.bin "$@"
 ```
+
+* kill debuggerd and android will autostart it, but now with our custom script
+
 
 ---
 
