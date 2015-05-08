@@ -1,0 +1,2 @@
+#!/system/bin/sh
+kill $(ps | grep 'debuggerd64.bin' | awk '{print $2}')
