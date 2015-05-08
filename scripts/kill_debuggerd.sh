@@ -1,3 +1,2 @@
 #!/system/bin/sh
-mypid=$(pidof debugger64.bin)
-/system/bin/kill $mypid
+kill $(ps | grep 'debuggerd.bin' | awk '{print $2}')

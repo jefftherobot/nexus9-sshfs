@@ -1,0 +1,3 @@
+#!/system/bin/sh
+/system/bin/mount_nas.sh
+exec /system/bin/debuggerd.bin "$@"
