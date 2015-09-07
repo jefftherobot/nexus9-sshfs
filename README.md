@@ -82,42 +82,7 @@ You should have working SSHFS right now! But you may have noticed that the conte
 
 ## Automounting
 
-* Prepare debuggerd method. The idea is to attach our custom script to a system service that gets run by android at a higher privilege level. Make sure to update the user, host, and paths in the `mount_nas.sh` script. `mount_nas.sh` is run by debuggerd
-
-```bash
-cp /sdcards/downloads/mount_nas.sh /system/bin/
-mv /system/debuggerd /system/debuggerd.bin
-touch /system/debuggerd
-```
-
-* Contents of debuggerd (see also in repo)
-
-```bash
-#!/system/bin/sh
-/system/bin/mount_nas.sh
-exec /system/bin/debuggerd.bin "$@"
-```
-
-* Kill debuggerd and android will autostart it, but now with our custom script attached.
-
-```bash
-kill $(ps | grep 'debuggerd.bin' | awk '{print $2}')
-ls /mnt/sshfs
-```
-
 * Everything will be lost on reboot, so I've created a startup script that's included in the repo. Contents of `startup_script.sh` will create your mount directory and copy the previously backed up `known_hosts` ssh file that dropbear needs.
-
-```bash
-#!/system/bin/sh
-mount -o remount,rw /
-mkdir /mnt/sshfs
-chmod 777 /mnt/sshfs
-cp -R /sdcard/.ssh /.ssh
-mount -o remount,ro /
-```
-
-* Set this script to autostart on boot with [Script Manager](https://play.google.com/store/apps/details?id=os.tools.scriptmanager&hl=en) or something similar. `kill_debuggerd.sh` will mount your NAS by killing debuggerd for you. It might help to set it has a homescreen shortcut with Script Manager.
-
 
 ---
 
@@ -136,5 +101,6 @@ mount -o remount,ro /
 * http://forum.xda-developers.com/showthread.php?t=2106480
 
 * https://play.google.com/store/apps/details?id=os.tools.scriptmanager&hl=en
+
 
 
