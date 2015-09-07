@@ -80,7 +80,7 @@ You should have working SSHFS right now! But you may have noticed that the conte
 
 ## Automounting
 
-* Everything will be lost on reboot, so I've created a startup script that's included in the repo. Contents of `startup_script.sh` will create your mount directory and copy the previously backed up `known_hosts` ssh file that dropbear needs. I user tasker to run this on boot, and also run the mount script when wifi is up.
+* Everything will be lost on reboot, so I've created a startup script that's included in the repo. Contents of `startup_script.sh` will create your mount directory and copy the previously backed up `known_hosts` ssh file that dropbear needs. I used tasker to run this on boot, and also run the mount script when wifi is up.
 
 ---
 
@@ -101,6 +101,7 @@ You should have working SSHFS right now! But you may have noticed that the conte
 * https://play.google.com/store/apps/details?id=os.tools.scriptmanager&hl=en
 
 * https://su.chainfire.eu/#how-mount
+
 
 
 
